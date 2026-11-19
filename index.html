@@ -363,7 +363,7 @@
       <p class="tagline">&ldquo;Room to rise.&rdquo; &mdash; pre-leasing marketing plan, June 2026&ndash;Aug 2027</p>
     </div>
     <div class="meta">
-      Last updated Nov 6, 2026
+      Last updated Nov 19, 2026
     </div>
   </header>
 
@@ -404,7 +404,7 @@ const DATA = [
     {name:"Property name, color palette &amp; brand kit finalized", type:"milestone", at:0, status:"done"},
   ]},
   {cat:"Budget", owner:null, tasks:[
-    {name:"Marketing budget finalized", type:"milestone", at:5, status:"scheduled"},
+    {name:"Marketing budget finalized", type:"milestone", at:6, status:"scheduled"},
   ]},
   {cat:"Signage", owner:"lm", tasks:[
     {name:"Temporary scaffold banners installed", type:"milestone", at:1, status:"done"},
@@ -415,13 +415,14 @@ const DATA = [
     {name:"Feather flags installed", type:"milestone", at:11, status:"tbd", sub:"TBD"},
   ]},
   {cat:"PR", owner:"lm", tasks:[
-    {name:"Naked Denver quarterly feature", type:"recurring", ats:[5,8,11,14], status:"scheduled"},
+    {name:"Naked Denver quarterly feature", type:"recurring", ats:[5,8,11,14], doneAts:[5], status:"scheduled"},
     {name:"Developing Denver quarterly feature", type:"recurring", ats:[5,8,11,14], status:"scheduled"},
     {name:"Local news outreach begins &amp; continues", type:"bar", from:7, to:14, open:true, status:"scheduled"},
   ]},
   {cat:"Social Media", owner:"kr", tasks:[
     {name:"Instagram + Facebook pages &amp; content calendar created", type:"milestone", at:6, status:"scheduled"},
     {name:"Weekly IG/FB posting begins &amp; continues", type:"bar", from:7, to:14, open:true, status:"scheduled"},
+    {name:"Content creator program begins &amp; continues", type:"bar", from:8, to:14, open:true, status:"scheduled"},
   ]},
   {cat:"Website", owner:"lm", tasks:[
     {name:"URL purchased", type:"milestone", at:0, status:"done"},
@@ -440,10 +441,10 @@ const DATA = [
   ]},
   {cat:"Media", owner:null, ownerLabel:"Lauri &amp; Kristen", tasks:[
     {name:"Floor plan images &mdash; B/W with measurements &amp; 2D", type:"milestone", at:4, status:"done", owner:"lm"},
-    {name:"Amenity space renderings", type:"milestone", at:5, status:"scheduled", owner:"lm"},
+    {name:"Amenity space renderings", type:"milestone", at:6, status:"scheduled", owner:"lm"},
     {name:"Sitemap created", type:"milestone", at:6, status:"scheduled", owner:"lm"},
-    {name:"Unit type photos live everywhere online", type:"bar", from:5, to:6, status:"scheduled", owner:"kr"},
-    {name:"Unit type 3D tours live everywhere online", type:"bar", from:5, to:6, status:"scheduled", owner:"kr"},
+    {name:"Unit type photos live everywhere online", type:"milestone", at:6, status:"scheduled", owner:"kr"},
+    {name:"Unit type 3D tours live everywhere online", type:"milestone", at:6, status:"scheduled", owner:"kr"},
     {name:"Amenity space photography", type:"milestone", at:10, status:"scheduled", owner:"kr"},
     {name:"Lifestyle photo &amp; video live everywhere online", type:"milestone", at:10, status:"scheduled", owner:"lm"},
     {name:"Mural artist spotlight video &amp; pictures", type:"bar", from:7, to:8, status:"scheduled", owner:"lm"},
@@ -459,14 +460,13 @@ const DATA = [
   {cat:"Retail Spaces &amp; Murals", owner:"kr", tasks:[
     {name:"Ice cream &amp; coffee brand &mdash; name, palette &amp; logo finalized", type:"milestone", at:6, status:"scheduled"},
     {name:"Montessori school marketing support", type:"bar", from:9, to:14, status:"tbd", sub:"TBD", owner:"lm"},
-    {name:"Mural artist secured", type:"milestone", at:5, status:"scheduled"},
+    {name:"Mural artist secured", type:"milestone", at:5, status:"done"},
     {name:"Mural designs finalized", type:"milestone", at:7, status:"scheduled"},
     {name:"Mural installation", type:"bar", from:8, to:9, status:"scheduled"},
   ]},
-  {cat:"Technology", owner:null, ownerLabel:"Lauri &amp; Lola", tasks:[
+  {cat:"Technology", owner:"lm", tasks:[
     {name:"EliseAI &mdash; contract signed", type:"milestone", at:4, status:"done", owner:"lm"},
-    {name:"EliseAI &mdash; onboarding &rarr; live", type:"bar", from:5, to:7, status:"scheduled", owner:"lm"},
-    {name:"Resman &mdash; onboarding &rarr; live", type:"bar", from:5, to:7, status:"tentative", sub:"go-live marked “?” in draft", owner:"lc"},
+    {name:"EliseAI &mdash; onboarding &rarr; live", type:"bar", from:6, to:6, status:"scheduled", owner:"lm"},
   ]},
   {cat:"Locators", owner:null, tasks:[
     {name:"SmartCity &amp; AptAmigo (if needed)", type:"milestone", at:10, status:"tbd", sub:"if needed"},
@@ -538,7 +538,7 @@ DATA.forEach(group=>{
       lane.appendChild(line);
       t.ats.forEach(a=>{
         const d = document.createElement('div');
-        d.className = 'diamond';
+        d.className = 'diamond' + (t.doneAts && t.doneAts.includes(a) ? ' done' : '');
         d.style.left = ((a+0.5)/15*100) + '%';
         lane.appendChild(d);
       });
@@ -550,7 +550,7 @@ DATA.forEach(group=>{
 });
 
 // Today marker. To move the line, change TODAY (month 0 = January).
-const TODAY = new Date(2026, 9, 31); // Oct 31, 2026
+const TODAY = new Date(2026, 10, 19); // Nov 19, 2026
 const daysInMonth = new Date(TODAY.getFullYear(), TODAY.getMonth()+1, 0).getDate();
 // column 0 = Jun 2026
 const todayColIndex = (TODAY.getFullYear()-2026)*12 + TODAY.getMonth() - 5 + (TODAY.getDate()-1)/daysInMonth;
